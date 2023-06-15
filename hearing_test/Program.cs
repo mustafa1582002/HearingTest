@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using RepositoryPatternUOW.Core.interfaces;
 using System.Text;
 using UoN.ExpressiveAnnotations.NetCore.DependencyInjection;
 
@@ -19,9 +20,12 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFramework
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+options.UseSqlServer(
+    builder.Configuration.GetConnectionString("DefaultConnection"),
+b => b.MigrationsAssembly(typeof(ApplicationDBContext).Assembly.FullName))
 );
-
+builder.Services.AddTransient(typeof(IBaseRepo<>), typeof(BaseRepo<>));
+//builder.Services.AddTransient<IBaseRepo,BaseRepo>();
 
 // AUthentication configration
 builder.Services.AddAuthentication(options =>
@@ -68,7 +72,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    //app.UseSwagger();
+    app.UseSwagger();
     app.UseSwaggerUI();
 }
 

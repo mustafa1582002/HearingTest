@@ -1,12 +1,13 @@
-﻿using Microsoft.Build.Framework;
+﻿
+using System.ComponentModel.DataAnnotations;
 
 namespace hearing_test.Models
 {
     public class AddRoleModel
     {
-        [Required]
+        
         public string UserId { get; set; }
-        [Required]
+        
         public string Role { get; set; }
     }
 }
