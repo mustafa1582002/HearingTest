@@ -23,10 +23,9 @@ namespace hearing_test.Controllers
                 return BadRequest(ModelState);
 
             var result=await _authService.RegisterAsync(model);
-            //if(!result.IsAuthenticated) 
-            if (result.IsAuthenticated)
+            if (!result.IsAuthenticated)
                 return BadRequest(result.Message);
-            return Ok(new {token = result.Token, ExpiresOn = result.ExpiresOn});
+            return Ok(result);
         }
         [HttpPost("token")]
         public async Task<IActionResult> GetTokenAsync([FromBody] TokenRequestModel model)
