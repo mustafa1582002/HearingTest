@@ -1,6 +1,4 @@
-using hearing_test.Helper;
-using hearing_test.Models;
-using hearing_test.Services;
+using RepositoryPatternUOW.Core.Helper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.AspNetCore.Identity;
@@ -9,6 +7,10 @@ using Microsoft.IdentityModel.Tokens;
 using RepositoryPatternUOW.Core.interfaces;
 using System.Text;
 using UoN.ExpressiveAnnotations.NetCore.DependencyInjection;
+using RepositoryPatternUOW.Core.Models;
+using RepositoryPatternWithUOF.EF;
+using RepositoryPatternWithUOF.EF.Repositories;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +27,7 @@ options.UseSqlServer(
 b => b.MigrationsAssembly(typeof(ApplicationDBContext).Assembly.FullName))
 );
 builder.Services.AddTransient(typeof(IBaseRepo<>), typeof(BaseRepo<>));
-//builder.Services.AddTransient<IBaseRepo,BaseRepo>();
+
 
 // AUthentication configration
 builder.Services.AddAuthentication(options =>

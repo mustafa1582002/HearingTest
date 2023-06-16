@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace hearing_test.Migrations
+namespace RepositoryPatternWithUOF.EF.Migrations
 {
     public partial class Seeding : Migration
     {
@@ -18,7 +18,6 @@ namespace hearing_test.Migrations
                 columns: new[] { "Id", "Name", "NormalizedName", "ConcurrencyStamp" },
                 values: new object[] { Guid.NewGuid().ToString(), "Admin", "Admin".ToUpper(), Guid.NewGuid().ToString() }
                 );
-
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

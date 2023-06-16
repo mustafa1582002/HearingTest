@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace hearing_test.Models
+namespace RepositoryPatternUOW.Core.Models
 {
     public class AuthModel
     {

@@ -1,4 +1,4 @@
-﻿using hearing_test.Models;
+﻿using RepositoryPatternUOW.Core.Models;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -6,11 +6,10 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using hearing_test.Helper;
+using RepositoryPatternUOW.Core.Helper;
+using RepositoryPatternUOW.Core.interfaces;
 
-//using NuGet.Protocol;
-
-namespace hearing_test.Services
+namespace RepositoryPatternWithUOF.EF.Repositories
 {
     public class AuthService : IAuthService
     {

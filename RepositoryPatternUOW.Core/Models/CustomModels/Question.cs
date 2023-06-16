@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
-namespace hearing_test.Models.CustomModels
+namespace RepositoryPatternUOW.Core.Models.CustomModels
 {
     public class Question : Base
     {
@@ -20,7 +21,7 @@ namespace hearing_test.Models.CustomModels
         public string Wrong3 { get; set; }
 
         public ICollection<ExamQuestion> Questions { get; set; } = new List<ExamQuestion>();
-
+        //[JsonIgnore]
         public ICollection<History> Question_History { get; set; } = new List<History>();
 
     }

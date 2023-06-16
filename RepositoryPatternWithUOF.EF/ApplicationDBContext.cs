@@ -1,9 +1,9 @@
-﻿
-using hearing_test.Models.CustomModels;
+﻿using RepositoryPatternUOW.Core.Models.CustomModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using RepositoryPatternUOW.Core.Models;
 
-namespace hearing_test.Models
+namespace RepositoryPatternWithUOF.EF
 {
     public class ApplicationDBContext: IdentityDbContext<ApplicationUser>
     {

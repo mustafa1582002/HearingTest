@@ -1,4 +1,4 @@
-﻿namespace hearing_test.Helper
+﻿namespace RepositoryPatternUOW.Core.Helper
 {
     public class JWT
     {

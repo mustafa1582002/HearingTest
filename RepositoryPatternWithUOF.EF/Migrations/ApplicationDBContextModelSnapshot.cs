@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using hearing_test.Models;
+using RepositoryPatternWithUOF.EF;
 
 #nullable disable
 
-namespace hearing_test.Migrations
+namespace RepositoryPatternWithUOF.EF.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
     partial class ApplicationDBContextModelSnapshot : ModelSnapshot
@@ -17,10 +17,10 @@ namespace hearing_test.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.5")
+                .HasAnnotation("ProductVersion", "6.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -55,7 +55,7 @@ namespace hearing_test.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -80,7 +80,7 @@ namespace hearing_test.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -155,7 +155,7 @@ namespace hearing_test.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("hearing_test.Models.ApplicationUser", b =>
+            modelBuilder.Entity("RepositoryPatternUOW.Core.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -230,13 +230,13 @@ namespace hearing_test.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("hearing_test.Models.CustomModels.Exam", b =>
+            modelBuilder.Entity("RepositoryPatternUOW.Core.Models.CustomModels.Exam", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime2");
@@ -264,7 +264,7 @@ namespace hearing_test.Migrations
                     b.ToTable("Exams");
                 });
 
-            modelBuilder.Entity("hearing_test.Models.CustomModels.ExamQuestion", b =>
+            modelBuilder.Entity("RepositoryPatternUOW.Core.Models.CustomModels.ExamQuestion", b =>
                 {
                     b.Property<int>("ExamId")
                         .HasColumnType("int");
@@ -279,7 +279,7 @@ namespace hearing_test.Migrations
                     b.ToTable("ExamQuestion");
                 });
 
-            modelBuilder.Entity("hearing_test.Models.CustomModels.History", b =>
+            modelBuilder.Entity("RepositoryPatternUOW.Core.Models.CustomModels.History", b =>
                 {
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -309,13 +309,13 @@ namespace hearing_test.Migrations
                     b.ToTable("History");
                 });
 
-            modelBuilder.Entity("hearing_test.Models.CustomModels.Question", b =>
+            modelBuilder.Entity("RepositoryPatternUOW.Core.Models.CustomModels.Question", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
                     b.Property<string>("Audio")
                         .IsRequired()
@@ -376,7 +376,7 @@ namespace hearing_test.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("hearing_test.Models.ApplicationUser", null)
+                    b.HasOne("RepositoryPatternUOW.Core.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -385,7 +385,7 @@ namespace hearing_test.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("hearing_test.Models.ApplicationUser", null)
+                    b.HasOne("RepositoryPatternUOW.Core.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -400,7 +400,7 @@ namespace hearing_test.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("hearing_test.Models.ApplicationUser", null)
+                    b.HasOne("RepositoryPatternUOW.Core.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -409,22 +409,22 @@ namespace hearing_test.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("hearing_test.Models.ApplicationUser", null)
+                    b.HasOne("RepositoryPatternUOW.Core.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("hearing_test.Models.CustomModels.ExamQuestion", b =>
+            modelBuilder.Entity("RepositoryPatternUOW.Core.Models.CustomModels.ExamQuestion", b =>
                 {
-                    b.HasOne("hearing_test.Models.CustomModels.Exam", "Exam")
+                    b.HasOne("RepositoryPatternUOW.Core.Models.CustomModels.Exam", "Exam")
                         .WithMany("Exams")
                         .HasForeignKey("ExamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("hearing_test.Models.CustomModels.Question", "Question")
+                    b.HasOne("RepositoryPatternUOW.Core.Models.CustomModels.Question", "Question")
                         .WithMany("Questions")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -435,15 +435,15 @@ namespace hearing_test.Migrations
                     b.Navigation("Question");
                 });
 
-            modelBuilder.Entity("hearing_test.Models.CustomModels.History", b =>
+            modelBuilder.Entity("RepositoryPatternUOW.Core.Models.CustomModels.History", b =>
                 {
-                    b.HasOne("hearing_test.Models.CustomModels.Exam", "Exam")
+                    b.HasOne("RepositoryPatternUOW.Core.Models.CustomModels.Exam", "Exam")
                         .WithMany("Exam_History")
                         .HasForeignKey("ExamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("hearing_test.Models.CustomModels.Question", "Question")
+                    b.HasOne("RepositoryPatternUOW.Core.Models.CustomModels.Question", "Question")
                         .WithMany("Question_History")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -454,14 +454,14 @@ namespace hearing_test.Migrations
                     b.Navigation("Question");
                 });
 
-            modelBuilder.Entity("hearing_test.Models.CustomModels.Exam", b =>
+            modelBuilder.Entity("RepositoryPatternUOW.Core.Models.CustomModels.Exam", b =>
                 {
                     b.Navigation("Exam_History");
 
                     b.Navigation("Exams");
                 });
 
-            modelBuilder.Entity("hearing_test.Models.CustomModels.Question", b =>
+            modelBuilder.Entity("RepositoryPatternUOW.Core.Models.CustomModels.Question", b =>
                 {
                     b.Navigation("Question_History");
 

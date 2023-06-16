@@ -1,7 +1,7 @@
-﻿using hearing_test.Models;
+﻿using RepositoryPatternUOW.Core.Models;
 using System.Threading.Tasks;
 
-namespace hearing_test.Services
+namespace RepositoryPatternUOW.Core.interfaces
 {
     public interface IAuthService
     {

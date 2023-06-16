@@ -1,15 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
-namespace hearing_test.Models.CustomModels
+namespace RepositoryPatternUOW.Core.Models.CustomModels
 {
     public class History
     {
         public int UserId { get; set; }
         //public ApplicationUser? User { get; set; }
         public int ExamId { get; set; }
-        public Exam? Exam { get; set; }
+        [JsonIgnore]
+        public Exam Exam { get; set; }
         public int QuestionId { get; set; }
-        public Question? Question { get; set; }
+        [JsonIgnore]
+        public Question Question { get; set; }
 
         [MaxLength(200)]
         public string? Answer { get; set; }

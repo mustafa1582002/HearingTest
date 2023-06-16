@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace hearing_test.Models.CustomModels
+namespace RepositoryPatternUOW.Core.Models.CustomModels
 {
     [Index(nameof(Name), IsUnique = true)]
     public class Base

@@ -1,7 +1,7 @@
-﻿using hearing_test.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using RepositoryPatternUOW.Core.interfaces;
+using RepositoryPatternUOW.Core.Models;
 using System.Threading.Tasks;
-using hearing_test.Services;
 
 namespace hearing_test.Controllers
 {
@@ -23,8 +23,8 @@ namespace hearing_test.Controllers
                 return BadRequest(ModelState);
 
             var result=await _authService.RegisterAsync(model);
-                
-            if(!result.IsAuthenticated)
+            //if(!result.IsAuthenticated) 
+            if (result.IsAuthenticated)
                 return BadRequest(result.Message);
             return Ok(new {token = result.Token, ExpiresOn = result.ExpiresOn});
         }

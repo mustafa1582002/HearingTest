@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace hearing_test.Models
+namespace RepositoryPatternUOW.Core.Models
 {
     public class TokenRequestModel
     {
